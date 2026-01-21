@@ -1,6 +1,3 @@
-# pix-digital-forensics-handbook
-Referência técnico-jurídica para investigações envolvendo Pix e SPB, com foco em evidências, retenção de logs e cadeia de custódia.
-
 # Mapa Técnico-Jurídico de Investigação  
 ## Pix / SPB / SPI / DICT / Gateways de Pagamento
 
