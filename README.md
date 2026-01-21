@@ -3,6 +3,8 @@
 
 **Autor:** Paulo A.  
 **Objetivo:** Inventário técnico e jurídico de informações úteis para investigações envolvendo Pix, SPB, gateways de pagamento e eventuais conversões para criptoativos, com foco em **evidência, retenção de logs, rastreabilidade e cadeia de custódia**, no nível exigido por **DFIR financeiro, auditoria e persecução penal**.
+**Nota terminológica:**  
+Para fins deste documento, a expressão **“instituição participante do Pix”** refere-se a qualquer entidade autorizada pelo Banco Central do Brasil a participar do arranjo Pix, incluindo instituições financeiras e instituições de pagamento, responsáveis pela oferta de serviços Pix ao usuário final.
 
 ---
 
@@ -15,8 +17,7 @@ O Banco Central do Brasil **não trata logs como mero requisito operacional**, m
 
 #### Fonte oficial
 Manual de Segurança do Pix – Banco Central do Brasil  
-Seção 7 – *Dados de Auditoria*  
-https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/Manual_de_Seguranca_do_Pix.pdf
+Seção 7 – *Dados de Auditoria*
 
 ---
 
@@ -25,8 +26,7 @@ O Regulamento do Pix incorpora explicitamente os manuais técnicos como **parte 
 
 #### Fonte oficial
 Resolução BCB nº 1, de 12/08/2020 – Regulamento do Pix  
-Art. 1º e Anexo (documentos integrantes)  
-https://www.bcb.gov.br/estabilidadefinanceira/pix_regulamento
+Art. 1º e Anexo (documentos integrantes)
 
 ---
 
@@ -34,12 +34,12 @@ https://www.bcb.gov.br/estabilidadefinanceira/pix_regulamento
 
 | Tipo de evidência | Onde deve existir |
 |------------------|------------------|
-| Logs de autenticação e acesso | Instituição financeira / PSP |
-| Logs de autorização e perfis | Instituição financeira / PSP |
-| Mensagens Pix (ICOM / SPI) | Instituição financeira (envio e recebimento) |
+| Logs de autenticação e acesso | Instituição participante do Pix |
+| Logs de autorização e perfis | Instituição participante do Pix |
+| Mensagens Pix (ICOM / SPI) | Instituição participante do Pix (envio e recebimento) |
 | Logs do SPI (liquidação) | Banco Central (registros centrais) |
-| Logs de API Pix | Instituição financeira e/ou gateway |
-| Logs do DICT | Instituição financeira participante |
+| Logs de API Pix | Instituição participante do Pix e/ou Gateway de pagamento |
+| Logs do DICT | Instituição participante do Pix |
 | Logs de gateway | Gateway de pagamento |
 | Infraestrutura (SO, firewall, IAM) | Onde o sistema Pix é operado |
 
@@ -54,7 +54,7 @@ Cada **PSP é responsável por armazenar seus próprios registros**, ainda que o
 **Finalidade investigativa:** identificar uso legítimo indevido, engenharia social, abuso de privilégio.
 
 **Devem existir em:**  
-- Instituição financeira / PSP  
+- Instituição participante do Pix  
 - Gateway (se houver console ou APIs administrativas)
 
 **Conteúdo mínimo esperado:**
@@ -75,7 +75,7 @@ https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/Manual
 **Finalidade investigativa:** identificar fraude sem malware ou exploit.
 
 **Devem existir em:**  
-- Instituição financeira  
+- Instituição participante do Pix  
 - Gateway (se operar funções críticas)
 
 **Registros esperados:**
@@ -93,8 +93,8 @@ https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/Manual
 **Finalidade:** reconstrução financeira da transação.
 
 **Devem existir em:**
-- Instituição financeira pagadora
-- Instituição financeira recebedora
+- Instituição participante do Pix pagadora
+- Instituição participante do Pix recebedora
 
 **Conteúdo:**
 - Mensagens XML `<envelope>`
@@ -116,7 +116,7 @@ https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/Manual
 **Altíssimo valor probatório.**
 
 **Devem existir em:**
-- Instituição financeira
+- Instituição participante do Pix
 - Gateway de pagamento (se envolvido)
 
 **Conteúdo esperado:**
@@ -140,7 +140,7 @@ https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/Manual
 **Finalidade:** rastrear titularidade e alterações de chave Pix.
 
 **Devem existir em:**  
-- Instituição financeira participante
+- Instituição participante do Pix participante
 
 **Retenção:**
 - Consultas: **2 anos**
@@ -186,7 +186,7 @@ https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/L13964.htm
 
 ## 6. CHECKLIST OPERACIONAL PARA ORDEM JUDICIAL
 
-### 6.1 Instituição financeira pagadora e recebedora
+### 6.1 Instituição participante do Pix pagadora e recebedora
 Solicitar:
 
 - Logs de autenticação e autorização (usuários e admins)
